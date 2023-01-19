@@ -1,8 +1,18 @@
-// ignore_for_file: unused_local_variable, avoid_function_literals_in_foreach_calls
+// ignore_for_file: unused_local_variable
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+// ignore_for_file: unnecessary_type_check
+// ignore_for_file: unnecessary_new
 
 void main() {
-  //variables();
+  variables();
   strings();
+  controlFlow();
+  operators();
+  functions();
+  collections();
+  classes();
+  castingAndTypeChecking();
+  soundNullSafety();
 }
 
 
@@ -88,14 +98,13 @@ void controlFlow() {
   if (args.length < 4) {
     // Expression must be of type bool (unlike JS for instance)
     switch (args.length) {
-      case 1:
-        print('One little piggy');
-        break;
+      case 1: // Fall through
       case 2:
-        print('Hello number two');
+        print('1 or 2');
         break;
       case 3:
-        print('Three is the magig number...'); // Fall through
+        print('Third time is the charm');
+        break;
       default:
         print('Default');
     }
@@ -207,6 +216,8 @@ void collections() {
   list.indexOf('Hello');
   list.join(' ');
 
+  listHigherOrderFunctions(list);
+
   /// Map declaration
   Map<String, int> map;
 
@@ -249,7 +260,7 @@ void listHigherOrderFunctions(List<String> list) {
 /// -------------------------------------------------
 /// --- Classes and constructors --------------------
 /// -------------------------------------------------
-/// 
+///
 /// See also:
 /// * https://dart.dev/guides/language/language-tour#classes
 /// * https://dart.dev/codelabs/dart-cheatsheet#named-constructors
@@ -266,9 +277,9 @@ class FictionalCharacter {
 
 /// Create a new instance of FictionalCharacter
 final austin = FictionalCharacter('Austin Powers');
+
 /// New instance optional 'new' keyword - not recommended
 final drEvil = new FictionalCharacter('Dr Evil');
-
 
 class FictionalCharacter1 {
   final String name;
@@ -284,17 +295,15 @@ class FictionalCharacter2 {
   final String alias;
 
   /// Constructor with optional parameters
-  FictionalCharacter2(this.name, {String? alias})
-      : this.alias = alias ?? 'Spy'
-  {
+  FictionalCharacter2(this.name, {String? alias}) : alias = alias ?? 'Spy' {
     // Optional constructor body
     print('Watch out, here is $name!');
   }
 
   /// Additional, named constructor
-  FictionalCharacter2.coolestCharacter() :
-        this.name = 'Austin Powers',
-        this.alias = 'International man of mystery';
+  FictionalCharacter2.coolestCharacter()
+      : name = 'Austin Powers',
+        alias = 'International man of mystery';
 }
 
 void classes() {
@@ -307,7 +316,6 @@ void classes() {
   final coolest = FictionalCharacter2.coolestCharacter();
 }
 
-
 /// *** More about classes ***
 
 /// Interface / protocol - implemented with abstract class
@@ -319,25 +327,27 @@ abstract class SomeInterface {
 abstract class SomeBaseClass {
   bool someField = true;
   void abstractMethod();
-  void inheritedMethod() { /* Implementation */ }
+  void inheritedMethod() {/* Implementation */}
 }
 
 /// Mixins - another way of reusing functionality
-mixin SomeTrait on SomeBaseClass { // Optionally limit use with 'on'
+mixin SomeTrait on SomeBaseClass {
+  // Optionally limit use with 'on'
   bool mixedInField = true;
-  void someUsefulMethod() { /* Implementation */ }
+  void someUsefulMethod() {/* Implementation */}
 }
 
 /// Putting it to use
 class AwesomeClass extends SomeBaseClass with SomeTrait implements SomeInterface {
-  void interfaceMethod() { /* Implementation */ }
-  void abstractMethod() { /* Implementation */ }
+  @override
+  void interfaceMethod() {/* Implementation */}
+  @override
+  void abstractMethod() {/* Implementation */}
 }
-
 
 /// *** Casting and type checking ***
 
-void castingAndTypeChecking() } {
+void castingAndTypeChecking() {
   Object austin = FictionalCharacter('Austin');
 
   /// Will throw exception if invalid
@@ -353,7 +363,7 @@ void castingAndTypeChecking() } {
 /// -------------------------------------------------
 /// --- Sound null safety ---------------------------
 /// -------------------------------------------------
-/// 
+///
 /// See also:
 /// * https://dart.dev/codelabs/dart-cheatsheet#nullable-variables
 /// * https://dart.dev/codelabs/dart-cheatsheet#null-aware-operators
@@ -361,8 +371,8 @@ void castingAndTypeChecking() } {
 void soundNullSafety() {
   // String string = null; // INVALID in null-safe Dart.
 
-  /// Null safety is enabled by default in Dart. 
-  /// '?' is used to mark nullable types. 
+  /// Null safety is enabled by default in Dart.
+  /// '?' is used to mark nullable types.
   String? string;
   print(string?.length); // prints 'null'
 
@@ -372,7 +382,6 @@ void soundNullSafety() {
 
   string ??= 'Hello'; // Assign if null
 }
-
 
 class LazyClass {
   late final int myInt;
