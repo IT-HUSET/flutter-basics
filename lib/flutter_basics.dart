@@ -73,7 +73,7 @@ class _CounterPageState extends State<CounterPage> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: DefaultTextStyle(
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
