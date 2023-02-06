@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const CounterCompleteApp());
+  runApp(const CounterApp());
 }
 
-class CounterCompleteApp extends StatelessWidget {
-  const CounterCompleteApp({super.key});
+class CounterApp extends StatelessWidget {
+  const CounterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,10 @@ class CounterCompleteApp extends StatelessWidget {
       title: 'CounterApp',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
       ),
       home: CounterPage(title: 'CounterApp'),
     );
@@ -72,19 +76,16 @@ class _CounterPageState extends State<CounterPage> {
           ),
           borderRadius: BorderRadius.circular(20),
         ),
-        child: DefaultTextStyle(
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Offstage(child: Text('🚀')), // Preload icon
-              Text('You have pushed the button this many times:'),
-              Text(
-                '$_counter',
-                style: TextStyle(fontSize: 44),
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Offstage(child: Text('🚀')), // Preload icon
+            Text('You have pushed the button this many times:'),
+            Text(
+              '$_counter',
+              style: TextStyle(fontSize: 44),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
